@@ -1,19 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import './CoachSignup.css'
 import coachimg from '../../images/coach.jpg'
 
 export default function CoachSignup() {
-  const initialState = { cname:"", password:"", dob:"", gender:"", mobile:"", speciality:"" }; 
+  const initialState = { name:"", password:"", dob:"", gender:"", mobile:0, speciality:"" }; 
   const [coach, setCoach] = useState(initialState);  
-  const { cname, password, dob, gender, mobile, speciality } = coach;  
+  const { name, password, dob, gender, mobile, speciality } = coach;  
+  const [homePage,setHomePage] = useState(true)
+  const [response,setResponse] = useState(null)
 
   const onChangeInput = (event) => {
     setCoach({...coach, [event.target.name] : event.target.value})
   }
-  const coachSignupSubmitHandler = (event) => {
+  const coachSignupSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log(coach)
+    await axios.post("http://localhost:9090/coach-service/coach", coach);
+    console.log(response);
+    setResponse(response)
+    setHomePage(false);
   }  
+
+  if (homePage) {
   return (
     <div className="coach-signup-container">
         <div className="coach-signup-form">
@@ -30,8 +38,8 @@ export default function CoachSignup() {
                         type="text"
                         minLength="3"
                         maxLength="50"
-                        name="cname"
-                        value={cname}
+                        name="name"
+                        value={name}
                         onChange={(event)=>{onChangeInput(event)}}
                     />
                 </div>
@@ -97,4 +105,14 @@ export default function CoachSignup() {
         </div>
     </div>
   )
+  } else {
+      return (
+          <div className="coach-signup-container sign-up-success-container">
+              <img className="coach-signup-img" src={coachimg} alt="coach-signup-img"/>
+              <h2>You are a coach now !!</h2>
+              <h4>Your coach id is {response?.data.id}</h4>
+              <button className="login-btn">Login now</button>
+          </div>
+      )
+  }
 }
