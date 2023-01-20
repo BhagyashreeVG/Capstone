@@ -19,3 +19,9 @@
     justify-content: space-evenly;
     padding: 0.7rem;
 }
+
+.header-details a {
+    color: white;
+    margin: 0.5rem;
+    text-decoration: none;
+}

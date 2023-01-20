@@ -11,7 +11,7 @@ export default function Coach() {
   }
 
   const coachSignup = () => {
-    navigate('/coachSignup');
+    navigate('/coachsignup');
   }
 
   return (

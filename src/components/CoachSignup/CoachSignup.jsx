@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './CoachSignup.css'
 import coachimg from '../../images/coach.jpg'
+import { useNavigate } from 'react-router'
 
 export default function CoachSignup() {
+  const navigate = useNavigate();
   const initialState = { name:"", password:"", dob:"", gender:"", mobile:0, speciality:"" }; 
   const [coach, setCoach] = useState(initialState);  
   const { name, password, dob, gender, mobile, speciality } = coach;  
@@ -15,12 +17,16 @@ export default function CoachSignup() {
   }
   const coachSignupSubmitHandler = async (event) => {
     event.preventDefault();
-    await axios.post("http://localhost:9090/coach-service/coach", coach);
-    console.log(response);
-    setResponse(response)
+    const res = await axios.post("http://localhost:9090/coach-service/coach", coach);
+    console.log(res);
+    setResponse(res)
     setHomePage(false);
   }  
 
+  const coachLogin = () => {
+    navigate('/coachlogin');
+  }
+  
   if (homePage) {
   return (
     <div className="coach-signup-container">
@@ -111,7 +117,7 @@ export default function CoachSignup() {
               <img className="coach-signup-img" src={coachimg} alt="coach-signup-img"/>
               <h2>You are a coach now !!</h2>
               <h4>Your coach id is {response?.data.id}</h4>
-              <button className="login-btn">Login now</button>
+              <button className="login-btn" onClick={() => { coachLogin()}}>Login now</button>
           </div>
       )
   }

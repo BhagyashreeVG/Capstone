@@ -1,58 +1,59 @@
 import React, { useState } from 'react'
+import { useNavigate }from 'react-router'
 import axios from 'axios'
-import { useNavigate } from 'react-router'
-import './CoachLogin.css'
-import coachimg from '../../images/coach.jpg'
+import './UserLogin.css'
+import userimg from '../../images/user.jpg'
 
-export default function CoachLogin({setLogged}) {
+export default function UserLogin({setLogged}) {
   const navigate = useNavigate();
-  const initialState = { cId:null, password:""};
-  const [coachCredentials, setcoachCredentials] = useState(initialState); 
-  const { cId, password } = coachCredentials;
-  const [coachData, setCoachData] = useState({});
+  const initialState = { uId:null, password:""};
+  const [userCredentials, setUserCredentials] = useState(initialState); 
+  const { uId, password } = userCredentials;
+  const [userData, setUserData] = useState({});
   const [ validCredentials, setvalidCredentials] = useState("");
 
-  const coachLoginSubmitHandler = async (event) => {
+  const userLoginSubmitHandler = async (event) => {
     event.preventDefault();
-    await axios.get(`http://localhost:9090/coach-service/coach/${coachCredentials.cId}`).then((response)=>{
-      setCoachData(response);
-      validateCoach(response);
+    await axios.get(`http://localhost:9090/user-service/user/${userCredentials.uId}`).then((response)=>{
+      setUserData(response);
+      validateUser(response);
     }).catch((error)=>{
         setvalidCredentials("Invalid credentials");
     });
   }
 
-  const validateCoach = (res) => {
+  const validateUser = (res) => {
     console.log(res);
-    if (res.data.password === coachCredentials.password)
+    if (res.data.password === userCredentials.password)
     {
       setvalidCredentials("");
       setLogged(true);
-      navigate('/coachhome')
+      navigate('/userhome')
     } else {
       setvalidCredentials("Invalid credentials");
     } 
+    
   }
 
   const onChangeInput = (event) => {
-    setcoachCredentials({...coachCredentials, [event.target.name] : event.target.value})
+    setUserCredentials({...userCredentials, [event.target.name] : event.target.value})
   }
   return (
-    <div className="coach-login-container">
-        <div className="coach-login-form">
+    <div className="user-login-container">
+        <div className="user-login-form">
             <h2>
-                <img className="coach-login-img" src={coachimg} alt="coach-login-img"/>
-                <span>Login as life coach</span>
+                <img className="user-login-img" src={userimg} alt="user-login-img"/>
+                <span>Login as user</span>
             </h2>
-            <form onSubmit={(event) => {coachLoginSubmitHandler(event)}}>
+            <form onSubmit={(event) => {userLoginSubmitHandler(event)}}>
                 <div className="elemnent-container">
                 <div className="element">
                     <input 
-                        placeholder="Coach id"
+                        placeholder="User id"
                         className="element-input"
                         type="number"
-                        name="cId"
-                        value={cId}
+                        name="uId"
+                        value={uId}
                         onChange={(event)=>{onChangeInput(event)}}
                     />
                 </div>

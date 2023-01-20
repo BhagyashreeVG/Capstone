@@ -1,0 +1,23 @@
+.coach-home-container {
+    background-color: #e6e6e6;
+    height: 90vh;
+    padding: 3rem;
+}
+
+.appointment-card {
+    background-color: black;
+    border-radius: 0.3rem;
+    color: white;
+    width: 40%;
+    margin: auto;
+    height: 12rem;
+}
+
+.appointment-card .card-item {
+    padding: 1rem;
+}
+
+.card-font-small {
+    font-size: 0.9rem;
+}
+

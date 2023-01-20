@@ -1,17 +1,17 @@
-.coach-login-container {
+.user-login-container {
     background-color: #e6e6e6;
     /* height: 110vh; */
     padding: 3rem;
 }
 
-.coach-login-form {
+.user-login-form {
     background-color: black;
     width: 40%;
     margin: auto;
     border-radius: 0.5rem;
 }
 
-.coach-login-form h2 {
+.user-login-form h2 {
     color: white;
     padding-top: 3rem;
     display: flex;
@@ -19,20 +19,20 @@
     justify-content: center;
 }
 
-.coach-login-img {
+.user-login-img {
     width: 80px
 }
 
-.coach-login-container form { 
+.user-login-container form { 
     color: white;
     height: 20rem;
 }
 
-.coach-login-container form div.element {
+.user-login-container form div.element {
     width: 100%;
 }
 
-.coach-login-container form div input.element-input {
+.user-login-container form div input.element-input {
     width: 80%;
     margin: 1rem;
     height: 2rem;
@@ -63,4 +63,8 @@
     margin-left: 1.3rem;
     color: red;
     margin-top: 1rem;
+}
+
+.user-login-form h2 span {
+    margin-left: 2rem;
 }
