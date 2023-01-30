@@ -4,12 +4,10 @@
     padding: 3rem;
 }
 
-.appointment-card {
-    background-color: black;
-    width: 30%;
-    margin: auto;
-    border-radius: 0.5rem;
-    height: 23rem;
+.user-appointment-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .user-login-form h2 {
@@ -56,5 +54,18 @@
     color: white;
     font-size: 0.9rem;
     border-radius: 0.2rem;
+}
+
+.user-appointment-single-card {
+    background-color: black;
+    width: 30%;
+    margin: auto;
+    border-radius: 0.5rem;
+    height: 23rem; 
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    flex-direction: column;
 }
 

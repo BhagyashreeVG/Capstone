@@ -15,7 +15,7 @@ import UserAppointment from './components/UserAppointment/UserAppointment';
 
 function App() {
   const [coachLoggedIn, setCoachLoggedIn] = useState(false);
-  const [userLoggedIn, setUserLoggedIn] = useState(true);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   return (
     <div className="App">

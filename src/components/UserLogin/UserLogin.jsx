@@ -3,8 +3,10 @@ import { useNavigate }from 'react-router'
 import axios from 'axios'
 import './UserLogin.css'
 import userimg from '../../images/user.jpg'
+import { loginUser } from '../../actions'
+import { connect } from 'react-redux'
 
-export default function UserLogin({setLogged}) {
+function UserLogin(props) {
   const navigate = useNavigate();
   const initialState = { uId:null, password:""};
   const [userCredentials, setUserCredentials] = useState(initialState); 
@@ -27,7 +29,8 @@ export default function UserLogin({setLogged}) {
     if (res.data.password === userCredentials.password)
     {
       setvalidCredentials("");
-      setLogged(true);
+      props.setLogged(true);
+      props.dispatch(loginUser(res.data))
       navigate('/userhome')
     } else {
       setvalidCredentials("Invalid credentials");
@@ -77,3 +80,5 @@ export default function UserLogin({setLogged}) {
     </div>
   )
 }
+
+export default connect()(UserLogin)

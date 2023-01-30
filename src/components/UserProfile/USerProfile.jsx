@@ -1,21 +1,25 @@
 import React from 'react'
 import './UserProfile.css'
+import { connect } from 'react-redux'
+import userimg from '../../images/user.jpg'
 
-export default function USerProfile() {
+function USerProfile(props) {
+  const data = props?.user;
+  console.log("profile" +JSON.stringify(props));
   return (
     <div className="user-profile-container">
       <div className="user-profile-card">
         <div className="user-card-item">
           <div>
-              Img
+            <img className="user-card-img" src={userimg} alt="user-login-img"/>
           </div>
           <div className="user-card-item-details">
-              <div className="user-profilecard-item">User name</div>
-              <div className="user-profilecard-font-small">Date of birth</div>
-              <div className="user-profilecard-font-small">Email id</div>
-              <div className="user-profilecard-font-small">Mobile number</div>
-              <div className="user-profilecard-font-small">Address</div>
-              <div className="user-profilecard-font-small">Pincode</div>
+              <div className="user-profilecard-item">{data.name}</div>
+              <div className="user-profilecard-font-small">Date of birth : { data.dob}</div>
+              <div className="user-profilecard-font-small">Email id : {data.email}</div>
+              <div className="user-profilecard-font-small">Mobile number : {data.mobile}</div>
+              <div className="user-profilecard-font-small">Address : {data.city} {data.state}, {data.country}</div>
+              <div className="user-profilecard-font-small">Pincode : {data.pincode}</div>
           </div>
         </div>
         <div> 
@@ -25,3 +29,11 @@ export default function USerProfile() {
   </div>
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user : state.loginUserReducer
+  }
+}
+
+export default connect(mapStateToProps)(USerProfile)

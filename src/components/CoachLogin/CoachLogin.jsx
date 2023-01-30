@@ -3,8 +3,11 @@ import axios from 'axios'
 import { useNavigate } from 'react-router'
 import './CoachLogin.css'
 import coachimg from '../../images/coach.jpg'
+import { loginCoach } from '../../actions'
+import { connect } from 'react-redux'
 
-export default function CoachLogin({setLogged}) {
+function CoachLogin(props) {
+  console.log(props)
   const navigate = useNavigate();
   const initialState = { cId:null, password:""};
   const [coachCredentials, setcoachCredentials] = useState(initialState); 
@@ -23,11 +26,12 @@ export default function CoachLogin({setLogged}) {
   }
 
   const validateCoach = (res) => {
-    console.log(res);
+    console.log(res.data);
     if (res.data.password === coachCredentials.password)
     {
       setvalidCredentials("");
-      setLogged(true);
+      props.setLogged(true);
+      props.dispatch(loginCoach(res.data))
       navigate('/coachhome')
     } else {
       setvalidCredentials("Invalid credentials");
@@ -76,3 +80,5 @@ export default function CoachLogin({setLogged}) {
     </div>
   )
 }
+
+export default connect()(CoachLogin)

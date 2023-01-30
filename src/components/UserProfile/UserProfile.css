@@ -10,7 +10,7 @@
     color: white;
     width: 40%;
     margin: auto;
-    height: 16.9rem;
+    height: 18rem;
 }
 
 .user-profile-card .user-profilecard-item {
@@ -36,11 +36,16 @@
     color: white;
     font-size: 1rem;
     border-radius: 0.4rem;
-    margin: 3rem 1rem 1rem 0;
+    margin: 2rem 1rem 1rem 0;
     width: 40%;
 }
 
 .user-card-item-details {
     padding-top: 2rem;
     width: 50%;
+}
+
+.user-card-img {
+    width: 150px;
+    height: 150px;
 }
