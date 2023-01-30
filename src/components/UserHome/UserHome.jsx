@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './UserHome.css'
+import { useNavigate } from 'react-router'
 import userimg from '../../images/user.jpg'
 import axios from 'axios';
 
 export default function UserHome() {
   const [coaches, setCoaches] = useState(null);
+  const navigate = useNavigate();
 
   const getAllCoaches = async () => {
     await axios.get("http://localhost:9090/coach-service/coach").then((response)=> {
@@ -17,6 +19,10 @@ export default function UserHome() {
     getAllCoaches();
   }, [])
   
+  const handleBookAppointment = (event) => {
+    event.preventDefault();
+    navigate('/bookAppointment')
+  }
   return (
     <div className="user-home-container">
       <div className="user-home-card">
@@ -34,7 +40,7 @@ export default function UserHome() {
                     <div className="user-home-font-small">Mobile number : {coach.mobile}</div>
                     <div className="user-home-font-small">Speciality : {coach.speciality}</div>
                 </div>
-                <button className="btn-booking">Book an appointment</button>
+                <button className="btn-booking" onClick = { (event) => { handleBookAppointment(event)}}>Book an appointment</button>
               </div>
             </div>
             )
