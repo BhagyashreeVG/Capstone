@@ -7,6 +7,15 @@ function UserAppointment(props) {
   console.log(JSON.stringify(props))
   const [appointments, setappointments] = useState(null);
 
+  const handleCancelAppointment = async (event, appointment) => {
+    event.preventDefault();
+    await axios.delete(`http://localhost:9090/appointment-service/coach/${appointment.id}`).then((response)=> {
+      getAllAppointments();
+    }).catch((error) => {
+
+    })
+  }
+
   const getAllAppointments = async () => {
     await axios.get(`http://localhost:9090/appointment-service/coach/${props.user.id}`).then((response)=> {
       setappointments(response.data);
@@ -40,7 +49,7 @@ function UserAppointment(props) {
                   <button>Reschedule appointment</button>
               </div>  
               <div className="btn-confirm">
-                  <button>Cancel appointment</button>
+                  <button onClick={ (event)=> { handleCancelAppointment(event, appointment)}}>Cancel appointment</button>
               </div>  
               </div>
           )

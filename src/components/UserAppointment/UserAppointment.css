@@ -22,7 +22,7 @@
     width: 80px
 }
 
-.btn-reschedule {
+.btn-reschedule,.btn-confirm{
     margin: 1rem auto 0;
     width: 100%;
 }
