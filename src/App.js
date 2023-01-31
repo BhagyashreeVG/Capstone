@@ -17,6 +17,7 @@ import UserBookAppointment from './components/UserBookAppointment/UserBookAppoin
 function App() {
   const [coachLoggedIn, setCoachLoggedIn] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [coachId, setCoachId] = useState(null);
 
   return (
     <div className="App">
@@ -31,10 +32,10 @@ function App() {
             <Route path="/coachprofile" index element={<CoachProfile/>}/>
             <Route path="/usersignup" index element={<UserSignup/>}/>
             <Route path="/userlogin" index element={<UserLogin setLogged={setUserLoggedIn}/>}/>
-            <Route path="/userhome" index element={<UserHome/>}/>  
+            <Route path="/userhome" index element={<UserHome setCoachId={setCoachId}/>}/>  
             <Route path="/userprofile" index element={<USerProfile/>}/>   
             <Route path="/userappointments" index element={<UserAppointment/>}/>  
-            <Route path="/bookAppointment" element={<UserBookAppointment/>} /> 
+            <Route path="/bookAppointment" element={<UserBookAppointment coachId={coachId}/>} /> 
           </Route>
         </Routes>
       </BrowserRouter>

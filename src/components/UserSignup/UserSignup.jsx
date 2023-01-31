@@ -28,7 +28,6 @@ export default function UserSignup() {
 
     const userSignupSubmitHandler = async (event) => {
         event.preventDefault();
-        event.preventDefault();
         const res = await axios.post("http://localhost:9090/user-service/user", user);
         setResponse(res)
         setHomePage(false);

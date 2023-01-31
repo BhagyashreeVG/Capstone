@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import userimg from '../../images/user.jpg'
 import axios from 'axios';
 
-export default function UserHome() {
+export default function UserHome(props) {
   const [coaches, setCoaches] = useState(null);
   const navigate = useNavigate();
 
@@ -19,8 +19,9 @@ export default function UserHome() {
     getAllCoaches();
   }, [])
   
-  const handleBookAppointment = (event) => {
+  const handleBookAppointment = (event, id) => {
     event.preventDefault();
+    props.setCoachId(id);
     navigate('/bookAppointment')
   }
   return (
@@ -40,7 +41,7 @@ export default function UserHome() {
                     <div className="user-home-font-small">Mobile number : {coach.mobile}</div>
                     <div className="user-home-font-small">Speciality : {coach.speciality}</div>
                 </div>
-                <button className="btn-booking" onClick = { (event) => { handleBookAppointment(event)}}>Book an appointment</button>
+                <button className="btn-booking" onClick = { (event) => { handleBookAppointment(event, coach.id)}}>Book an appointment</button>
               </div>
             </div>
             )
