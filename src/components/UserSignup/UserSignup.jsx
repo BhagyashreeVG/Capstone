@@ -3,13 +3,15 @@ import './UserSignup.css'
 import axios from 'axios';
 import userimg from '../../images/user.jpg'
 import { initUser } from '../../data/user';
+import { useNavigate } from 'react-router'
 
 export default function UserSignup() {
     const [homePage, setHomePage] = useState(true);
     const initialState = initUser;
     const [user, setUser] = useState(initialState);
     const [response,setResponse] = useState({});
-    
+    const navigate = useNavigate();
+
     const {
         id,
         name,
@@ -28,13 +30,12 @@ export default function UserSignup() {
         event.preventDefault();
         event.preventDefault();
         const res = await axios.post("http://localhost:9090/user-service/user", user);
-        console.log(res);
         setResponse(res)
         setHomePage(false);
     }
 
     const userLogin = () => {
-
+        navigate('/userLogin')
     }
 
     const onChangeInput = (event) => {

@@ -25,7 +25,6 @@ function UserLogin(props) {
   }
 
   const validateUser = (res) => {
-    console.log(res);
     if (res.data.password === userCredentials.password)
     {
       setvalidCredentials("");

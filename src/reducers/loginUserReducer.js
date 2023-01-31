@@ -27,7 +27,6 @@ export const loginUserReducer = (state=initialState, action) => {
     }
     switch(action.type) {
         case 'LOGIN_USER' :
-            console.log("reducer"+ JSON.stringify({...data})) 
             return {
                 ...data
             }

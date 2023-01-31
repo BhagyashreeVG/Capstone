@@ -2,6 +2,7 @@ const initialState = { name:"", password:"", dob:"", gender:"", mobile:0, specia
 
 export const loginCoachReducer = (state=initialState, action) => {
     const data = {
+        id:action.data?.id,
         name:action.data?.name,
         password:action.data?.password,
         dob:action.data?.dob,
@@ -11,7 +12,6 @@ export const loginCoachReducer = (state=initialState, action) => {
     }
     switch(action.type) {
         case 'LOGIN_COACH' :
-            console.log("reducer"+ JSON.stringify({...data})) 
             return {
                 ...data
             }

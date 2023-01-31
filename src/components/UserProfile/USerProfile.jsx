@@ -5,7 +5,6 @@ import userimg from '../../images/user.jpg'
 
 function USerProfile(props) {
   const data = props?.user;
-  console.log("profile" +JSON.stringify(props));
   return (
     <div className="user-profile-container">
       <div className="user-profile-card">

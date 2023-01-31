@@ -18,7 +18,6 @@ export default function CoachSignup() {
   const coachSignupSubmitHandler = async (event) => {
     event.preventDefault();
     const res = await axios.post("http://localhost:9090/coach-service/coach", coach);
-    console.log(res);
     setResponse(res)
     setHomePage(false);
   }  

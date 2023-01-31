@@ -7,7 +7,6 @@ import { loginCoach } from '../../actions'
 import { connect } from 'react-redux'
 
 function CoachLogin(props) {
-  console.log(props)
   const navigate = useNavigate();
   const initialState = { cId:null, password:""};
   const [coachCredentials, setcoachCredentials] = useState(initialState); 
@@ -26,7 +25,6 @@ function CoachLogin(props) {
   }
 
   const validateCoach = (res) => {
-    console.log(res.data);
     if (res.data.password === coachCredentials.password)
     {
       setvalidCredentials("");

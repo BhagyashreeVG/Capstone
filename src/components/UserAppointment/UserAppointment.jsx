@@ -4,7 +4,6 @@ import axios from 'axios';
 import './UserAppointment.css'
 
 function UserAppointment(props) {
-  console.log(JSON.stringify(props))
   const [appointments, setappointments] = useState(null);
 
   const handleCancelAppointment = async (event, appointment) => {

@@ -2,6 +2,7 @@
     background-color: #e6e6e6;
     height: 90vh;
     padding: 3rem;
+    display: flex;
 }
 
 .appointment-card {
@@ -21,3 +22,12 @@
     font-size: 0.9rem;
 }
 
+.coach-home-card-container {
+    display: flex;
+    width: 60%;
+    margin: auto;
+}
+
+.no-schedules {
+    justify-content: center;
+}
