@@ -22,6 +22,7 @@ export default function UserHome(props) {
   const handleBookAppointment = (event, id) => {
     event.preventDefault();
     props.setCoachId(id);
+    props.setTypeAppt(true);
     navigate('/bookAppointment')
   }
   return (

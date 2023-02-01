@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router'
 import { connect } from 'react-redux';
 import axios from 'axios';
 import './UserAppointment.css'
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 function UserAppointment(props) {
   const [appointments, setappointments] = useState(null);
+  const navigate = useNavigate();
 
   const handleCancelAppointment = async (event, appointment) => {
+    
     event.preventDefault();
     await axios.delete(`http://localhost:9090/appointment-service/coach/${appointment.id}`).then((response)=> {
       getAllAppointments();
     }).catch((error) => {
 
     })
+  }
+  
+  const handleReschedule = () => {
+    props.setTypeAppt(false);
+    navigate('/bookAppointment')
   }
 
   const getAllAppointments = async () => {
@@ -46,10 +56,22 @@ function UserAppointment(props) {
                     </div>
                   </div> 
                   <div className="btn-reschedule">
-                      <button>Reschedule appointment</button>
+                      <button onClick={()=>handleReschedule()}>Reschedule appointment</button>
                   </div>  
                   <div className="btn-confirm">
-                      <button onClick={ (event)=> { handleCancelAppointment(event, appointment)}}>Cancel appointment</button>
+                    <Popup trigger={<button>Cancel appointment</button>} modal nested>
+                      {
+                        close => (
+                          <div className='modal popup-container'>
+                            <div className='content popup-contents'>Are you sure you want to cancel the appoinment</div>
+                            <div className="popup-btn-container">
+                              <button className="btn-yes" onClick={(event)=> { close(); handleCancelAppointment(event,appointment)}}>Yes</button>
+                              <button className="btn-no" onClick={()=>close()}>No</button>
+                            </div>
+                          </div>
+                        )
+                      }
+                    </Popup>
                   </div>  
                   </div>
               )
@@ -60,7 +82,7 @@ function UserAppointment(props) {
       )
     } else {
       return (
-        <div className="appointment-container no-appointment">
+        <div className="appointment-container appointment-empty no-appointment">
           <div className="user-appointment-card">
             <h3 className="user-booking-h3">No scheduled appointments</h3>
           </div>

@@ -6,20 +6,30 @@ import { useNavigate } from 'react-router'
 import { initUser } from '../../data/user';
 
 function UserBookAppointment(props) {
-  const initialState = { date: "",slot: "", userId: props.user.id, coachId: props.coachId};
+  const initialState = { id:null, date: "",slot: "", userId: props.user.id, coachId: props.coachId};
   const [appointment, setAppointment] = useState(initialState);
   const { id, date, slot, userId, coachId } = appointment;
   const [apptSuccess, setApptSuccess] = useState(false);
+  const [apptHeaderText, setApptHeaderText] = useState("");
+  const [apptSuccessText, setApptSuccessText] = useState("");
 
 
   const handleConfirmAppointment = async () => {
     console.log(JSON.stringify(appointment))
-    await axios.post(`http://localhost:9090/appointment-service/addApp`,appointment ).then((res)=> {
-        setApptSuccess(true);
-        
-    }).catch((err)=>{
-        console.log(err)
-    })
+    if(props.typeAppt) {
+        await axios.post(`http://localhost:9090/appointment-service/addApp`,appointment ).then((res)=> {
+            setApptSuccess(true);
+        }).catch((err)=>{
+            console.log(err)
+        })
+    } else {
+        console.log(appointment)
+        await axios.put(`http://localhost:9090/appointment-service/putApp`,appointment ).then((res)=> {
+            setApptSuccess(true); 
+        }).catch((err)=>{
+            console.log(err)
+        })
+    } 
   }
 
   const onSlotChange = (event) => {
@@ -31,13 +41,23 @@ function UserBookAppointment(props) {
       setAppointment({...appointment, [event.target.name]: event.target.value})
   }
 
+  useEffect(()=>{
+     if (props.typeAppt) {
+          setApptHeaderText("Proceed with your appointment")
+          setApptSuccessText("Your appointment is scheduled successfully")
+      } else  {
+        setApptHeaderText("Reschedule your appointment")
+        setApptSuccessText("Your appointment is rescheduled successfully")
+    }
+  },[])
+
   if(!apptSuccess)
   {
   return (
-    <div className="appointment-container">
+    <div className="appointment-book-container">
       <div className="user-appointment-card">
             <div className="user-booking-single-card">
-                <h3 className="user-booking-h3">Proceed with your appointment</h3>
+                <h3 className="user-booking-h3">{apptHeaderText}</h3>
                 <div className="appointment-elements">
                     <label>Appointment date</label>
                     <input className="appointment-input-date" type="text" name="date" value={date} onChange={ (e) => handleChange(e)}/>
@@ -64,10 +84,10 @@ function UserBookAppointment(props) {
   )
   } else {
       return (
-        <div className="appointment-container">
+        <div className="appointment-book-container appointment-scheduler">
         <div className="user-appointment-card">
-              <div className="user-booking-single-card">
-                  <h3 className="user-booking-none-h3">Your appointment is scheduled successfully</h3>
+              <div className="user-booked-single-card">
+                  <h3 className="userappt-booking-none-h3">{apptSuccessText}</h3>
               </div>     
               </div>
         </div> 

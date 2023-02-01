@@ -1,6 +1,6 @@
 .appointment-container {
     background-color: #e6e6e6;
-    padding: 1rem;
+    padding: 3rem;
 }
 
 .user-appointment-card {
@@ -83,3 +83,40 @@
     height: 110vh;
 }
 
+.popup-container {
+    padding: 1rem;
+}
+
+.popup-content {
+    width: 35%;
+}
+
+.popup-contents {
+    font-size: 1.2rem;
+}
+
+.popup-btn-container {
+    margin-left: 2rem;
+    margin-top: 1rem;
+}
+
+.popup-btn-container button {
+    width: 40%;
+    margin: 0.5rem;
+    height: 2rem;
+    color: white;
+    font-size: 0.9rem;
+    border: none;
+}
+
+.btn-yes {
+    background-color: green;
+}
+
+.btn-no {
+    background-color: red;
+}
+
+.appointment-empty {
+    height: 100vh;
+}
