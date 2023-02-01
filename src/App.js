@@ -35,7 +35,7 @@ function App() {
             <Route path="/userlogin" index element={<UserLogin setLogged={setUserLoggedIn}/>}/>
             <Route path="/userhome" index element={<UserHome setTypeAppt={setTypeAppt} setCoachId={setCoachId}/>}/>  
             <Route path="/userprofile" index element={<USerProfile/>}/>   
-            <Route path="/userappointments" index element={<UserAppointment setTypeAppt={setTypeAppt}/>}/>  
+            <Route path="/userappointments" index element={<UserAppointment setCoachId={setCoachId} setTypeAppt={setTypeAppt}/>}/>  
             <Route path="/bookAppointment" element={<UserBookAppointment typeAppt={typeAppt} coachId={coachId}/>} /> 
           </Route>
         </Routes>

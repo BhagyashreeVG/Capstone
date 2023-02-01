@@ -20,8 +20,9 @@ function UserAppointment(props) {
     })
   }
   
-  const handleReschedule = () => {
+  const handleReschedule = (appointment) => {
     props.setTypeAppt(false);
+    props.setCoachId(appointment.coachId)
     navigate('/bookAppointment')
   }
 
@@ -56,7 +57,7 @@ function UserAppointment(props) {
                     </div>
                   </div> 
                   <div className="btn-reschedule">
-                      <button onClick={()=>handleReschedule()}>Reschedule appointment</button>
+                      <button onClick={()=>handleReschedule(appointment)}>Reschedule appointment</button>
                   </div>  
                   <div className="btn-confirm">
                     <Popup trigger={<button>Cancel appointment</button>} modal nested>
